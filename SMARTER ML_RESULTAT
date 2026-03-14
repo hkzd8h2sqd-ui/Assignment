@@ -1,0 +1,22 @@
+SMARTER ML
+Jag testade tre olika maskininlärningsmodeller för att se vilken som bäst kan förutsäga om en person 
+investerar i kryptovalutor eller inte.
+
+1. Logistic Regression
+En enkel och snabb modell som fungerar bra när sambanden i datan är ganska raka och linjära. 
+Den används ofta som en första basmodell.
+
+2. Random Forest
+En modell som bygger många beslutsträd och kombinerar dem. Den är bra på att hitta mer komplexa 
+mönster och fungerar ofta bra på tabell‑data.
+
+3. Hist Gradient Boosting
+En modern och kraftfull modell som bygger många små “svaga” modeller som förbättrar varandra
+steg för steg. Den brukar prestera väldigt bra på den här typen av data.
+
+⭐ Olika modeller fungerar olika bra beroende på datan. Genom att testa tre olika metoder och 
+jämföra deras ROC‑AUC‑värden kunde jags välja den modell som gav bäst resultat.
+
+SLUTSATS
+Bästa modellen: Hist Gradient Boosting 
+ROC-AUC: 0.9242505424423137
