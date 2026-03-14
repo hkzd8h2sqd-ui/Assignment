@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import argparse
 import json
 import pickle
 from dataclasses import dataclass
@@ -20,40 +19,15 @@ from sklearn.preprocessing import StandardScaler
 DEFAULT_TRAIN_INPUT = "SmarterML_Training.Input"
 DEFAULT_TRAIN_LABEL = "SmarterML_Training.Label"
 DEFAULT_EVAL_INPUT = "SmarterML_Eval.Input"
+DEFAULT_ARTIFACTS_DIR = Path("artifacts")
+DEFAULT_CV_FOLDS = 5
+DEFAULT_RANDOM_STATE = 42
 
 
 @dataclass(frozen=True)
 class Candidate:
 	name: str
 	estimator: BaseEstimator
-
-
-def parse_args() -> argparse.Namespace:
-	parser = argparse.ArgumentParser(
-		description="Train and evaluate binary classifiers for the Smarter ML assignment."
-	)
-	parser.add_argument("--train-input", type=Path, default=Path(DEFAULT_TRAIN_INPUT))
-	parser.add_argument("--train-label", type=Path, default=Path(DEFAULT_TRAIN_LABEL))
-	parser.add_argument("--eval-input", type=Path, default=Path(DEFAULT_EVAL_INPUT))
-	parser.add_argument(
-		"--artifacts-dir",
-		type=Path,
-		default=Path("artifacts"),
-		help="Directory where reports, model, and predictions are written.",
-	)
-	parser.add_argument(
-		"--cv-folds",
-		type=int,
-		default=5,
-		help="Number of stratified cross-validation folds.",
-	)
-	parser.add_argument(
-		"--random-state",
-		type=int,
-		default=42,
-		help="Random seed used for CV shuffling and stochastic models.",
-	)
-	return parser.parse_args()
 
 
 def load_matrix(path: Path) -> np.ndarray:
@@ -244,20 +218,18 @@ def save_outputs(
 
 
 def main() -> None:
-	args = parse_args()
-
-	train_x = load_matrix(args.train_input)
-	train_y = load_labels(args.train_label)
-	eval_x = load_matrix(args.eval_input)
+	train_x = load_matrix(Path(DEFAULT_TRAIN_INPUT))
+	train_y = load_labels(Path(DEFAULT_TRAIN_LABEL))
+	eval_x = load_matrix(Path(DEFAULT_EVAL_INPUT))
 	validate_shapes(train_x, train_y, eval_x)
 
-	candidates = build_candidates(args.random_state)
+	candidates = build_candidates(DEFAULT_RANDOM_STATE)
 	results = evaluate_candidates(
 		train_x=train_x,
 		train_y=train_y,
 		candidates=candidates,
-		cv_folds=args.cv_folds,
-		random_state=args.random_state,
+		cv_folds=DEFAULT_CV_FOLDS,
+		random_state=DEFAULT_RANDOM_STATE,
 	)
 
 	best_result = results[0]
@@ -284,7 +256,7 @@ def main() -> None:
 	}
 
 	save_outputs(
-		artifacts_dir=args.artifacts_dir,
+		artifacts_dir=DEFAULT_ARTIFACTS_DIR,
 		report=report,
 		best_estimator=best_estimator,
 		eval_predictions=eval_predictions,
@@ -299,7 +271,7 @@ def main() -> None:
 			f"f1={row['f1_mean']:.4f}, accuracy={row['accuracy_mean']:.4f}"
 		)
 	print(f"\nBest model: {best_result['name']}")
-	print(f"Artifacts written to: {args.artifacts_dir.resolve()}")
+	print(f"Artifacts written to: {DEFAULT_ARTIFACTS_DIR.resolve()}")
 
 
 if __name__ == "__main__":

@@ -9,6 +9,8 @@ The script in [main.py](/Users/bjornholmgren/Library/Mobile%20Documents/com~appl
 3. Selects the best model by mean ROC-AUC.
 4. Fits the best model on the full training set and writes predictions for the 1750 evaluation rows.
 
+All file names and settings are defined directly in the script, so there are no command-line arguments to pass.
+
 ## Run
 
 From the project directory:
