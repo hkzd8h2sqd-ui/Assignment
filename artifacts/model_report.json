@@ -1,0 +1,63 @@
+{
+  "dataset": {
+    "num_samples": 1250,
+    "class_0": 734,
+    "class_1": 516,
+    "positive_rate": 0.4128,
+    "num_features": 52,
+    "num_eval_samples": 1750
+  },
+  "selection_metric": "roc_auc",
+  "best_model": {
+    "name": "hist_gradient_boosting",
+    "roc_auc_mean": 0.922658621184261,
+    "roc_auc_std": 0.022838463915603836,
+    "accuracy_mean": 0.8432000000000001,
+    "accuracy_std": 0.028999310336626945,
+    "balanced_accuracy_mean": 0.8385718720667803,
+    "balanced_accuracy_std": 0.0293504252766318,
+    "f1_mean": 0.8105690098617334,
+    "f1_std": 0.0336376172338373
+  },
+  "top_models": [
+    {
+      "name": "hist_gradient_boosting",
+      "roc_auc_mean": 0.922658621184261,
+      "roc_auc_std": 0.022838463915603836,
+      "accuracy_mean": 0.8432000000000001,
+      "accuracy_std": 0.028999310336626945,
+      "balanced_accuracy_mean": 0.8385718720667803,
+      "balanced_accuracy_std": 0.0293504252766318,
+      "f1_mean": 0.8105690098617334,
+      "f1_std": 0.0336376172338373
+    },
+    {
+      "name": "random_forest",
+      "roc_auc_mean": 0.861661521494231,
+      "roc_auc_std": 0.020280024270728562,
+      "accuracy_mean": 0.7448,
+      "accuracy_std": 0.019823218709382206,
+      "balanced_accuracy_mean": 0.715849190249519,
+      "balanced_accuracy_std": 0.018905151131106038,
+      "f1_mean": 0.6402442285452258,
+      "f1_std": 0.025326010732572825
+    },
+    {
+      "name": "logistic_regression",
+      "roc_auc_mean": 0.7210609879009457,
+      "roc_auc_std": 0.019100750232165863,
+      "accuracy_mean": 0.6696000000000001,
+      "accuracy_std": 0.019199999999999978,
+      "balanced_accuracy_mean": 0.6679628414226956,
+      "balanced_accuracy_std": 0.018325106398406083,
+      "f1_mean": 0.6220836089721539,
+      "f1_std": 0.02003828807377449
+    }
+  ],
+  "training_fit_metrics": {
+    "train_roc_auc": 1.0,
+    "train_accuracy": 1.0,
+    "train_balanced_accuracy": 1.0,
+    "train_f1": 1.0
+  }
+}
